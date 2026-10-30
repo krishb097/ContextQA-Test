@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ID 156 & 495: Special characters in Title: () . ? + -->
+  <title>ContextQA Suite (v2.4) . ? +</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Ambient Glows */
+    .glow-orb-1, .glow-orb-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .glow-orb-1 {
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      top: -100px;
+      left: 15%;
+      opacity: 0.25;
+      animation: floatGlow 12s infinite alternate ease-in-out;
+    }
+    .glow-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      bottom: 10%;
+      right: 10%;
+      opacity: 0.2;
+      animation: floatGlow 10s infinite alternate-reverse ease-in-out;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.15); }
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 13, 22, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .nav-tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* Container & Layout */
+    .wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge-ids {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .test-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .test-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    /* Inputs, Buttons, & Interactive Elements */
+    .code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #38bdf8;
+      font-size: 0.9rem;
+    }
+
+    .input-field {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      color: white;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .btn:disabled {
+      background: rgba(255, 255, 255, 0.03);
+      color: #475569;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Dynamic Target Box for Class Verifications */
+    .state-box {
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .state-box.active {
+      border-color: var(--success);
+      background: rgba(16, 185, 129, 0.08);
+      color: #34d399;
+    }
+    .state-box.selected-row {
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+      border-style: solid;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <span>ContextQA Test Bench</span>
+    </div>
+    <span class="nav-tag">Live Testing Target • Part D</span>
+  </nav>
+
+  <!-- Content Wrapper -->
+  <div class="wrapper">
+
+    <div class="hero-section">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Interactive Automation Sandbox Ready
+      </div>
+      <h1 class="hero-title">NLP Template Verification Hub</h1>
+      <p class="hero-desc">Sleek multi-scenario targets designed for exact validation of ticket CON-6075 fixes.</p>
+    </div>
+
+    <!-- Cards Matrix -->
+    <div class="dashboard-grid">
+
+      <!-- CARD 1: Text Verifications -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">Page Text Evaluation</h2>
+          <span class="badge-ids">ID 467, 168</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Duplicate Text Occurrence #1</span>
+          <div class="code-pill">Status: Operational</div>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Duplicate Text Occurrence #2</span>
+          <div class="code-pill">Status: Operational</div>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Quote Parsing Target</span>
+          <div class="code-pill">Platform: "ContextQA" Next-Gen Engine</div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Attributes & Classes -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">Attributes & Classes</h2>
+          <span class="badge-ids">ID 478, 66, 465</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Attribute Target Label</span>
+          <label id="target-attr-label" 
+                 data-type="primary-production-instance" 
+                 title="qa-verified-component"
+                 class="code-pill" style="display: block; cursor: default;">
+            data-type="primary-production-instance"
+          </label>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Multi-Class Container</span>
+          <div id="class-container-target" class="state-box active selected-row">
+            Target Container with classes: <strong>active</strong> & <strong>selected-row</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: If Condition Targets -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">Conditional States</h2>
+          <span class="badge-ids">ID 101, 469</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Clickable vs Disabled Buttons</span>
+          <div style="display: flex; gap: 12px; margin-top: 4px;">
+            <button id="btn-clickable" class="btn btn-gradient">Active Action</button>
+            <button id="btn-disabled" class="btn" disabled>Inactive Action</button>
+          </div>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Empty Input (ID 469 Pass)</span>
+          <input type="text" id="input-empty" class="input-field" placeholder="Awaiting keyboard input...">
+        </div>
+        <div class="test-row">
+          <span class="test-label">Pre-filled Input (ID 469 Fail)</span>
+          <input type="text" id="input-filled" class="input-field" value="Fixed initial string payload">
+        </div>
+      </div>
+
+      <!-- CARD 4: While Loops with Inputbox -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">While Loop Inputbox</h2>
+          <span class="badge-ids">ID 570, 569</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Live Monitored Field</span>
+          <input type="text" id="dynamic-loop-input" class="input-field" value="QUEUE_PROCESSING_ACTIVE">
+        </div>
+        <div class="test-row" style="margin-top: 6px;">
+          <button class="btn btn-secondary" style="width: 100%;" onclick="toggleLoopValue()">
+            Toggle State to 'IDLE_COMPLETE'
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 5: Playwright Export Check -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">Playwright Export Target</h2>
+          <span class="badge-ids">ID 590</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Enabled Verification Element</span>
+          <button id="target-export-btn" class="btn btn-gradient" style="width: 100%;">
+            Exportable Verification Target
+          </button>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-top: 8px;">
+          Export this step in Playwright to verify code outputs <code>toBeEnabled()</code> instead of checking disabled state.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function toggleLoopValue() {
+      const input = document.getElementById('dynamic-loop-input');
+      if (input.value.includes('QUEUE_PROCESSING_ACTIVE')) {
+        input.value = 'IDLE_COMPLETE';
+      } else {
+        input.value = 'QUEUE_PROCESSING_ACTIVE';
+      }
+    }
+  </script>
+
+</body>
+</html>
