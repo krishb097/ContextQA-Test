@@ -483,20 +483,44 @@
           <h2 class="card-title">Conditional States</h2>
           <span class="badge-ids">ID 101, 469</span>
         </div>
+        
         <div class="test-row">
-          <span class="test-label">Clickable vs Disabled Buttons</span>
-          <div style="display: flex; gap: 12px; margin-top: 4px;">
-            <button id="btn-clickable" class="btn btn-gradient">Active Action</button>
-            <button id="btn-disabled-test" class="btn" disabled>Disabled Action</button>
-          </div>
+          <span class="test-label">Clickable Button (ID 101 Pass Target)</span>
+          <button 
+            id="btn-clickable" 
+            name="btn-clickable"
+            type="button" 
+            class="btn btn-gradient" 
+            data-qa="active-action-btn"
+            aria-label="Active Action"
+            style="width: 100%; cursor: pointer;">
+            Active Action
+          </button>
         </div>
+
+        <div class="test-row">
+          <span class="test-label">Disabled Button (ID 101 Fail / Else Target)</span>
+          <button 
+            id="btn-disabled-test" 
+            name="btn-disabled-test"
+            type="button" 
+            class="btn" 
+            disabled 
+            data-qa="disabled-action-btn"
+            aria-label="Disabled Action"
+            style="width: 100%; cursor: not-allowed; pointer-events: none;">
+            Disabled Action
+          </button>
+        </div>
+
         <div class="test-row">
           <span class="test-label">Empty Input (ID 469 Pass)</span>
-          <input type="text" id="input-empty" class="input-field" placeholder="Awaiting keyboard input...">
+          <input type="text" id="input-empty" name="input-empty" class="input-field" placeholder="Awaiting keyboard input...">
         </div>
+
         <div class="test-row">
           <span class="test-label">Pre-filled Input (ID 469 Fail)</span>
-          <input type="text" id="input-filled" class="input-field" value="Fixed initial string payload">
+          <input type="text" id="input-filled" name="input-filled" class="input-field" value="Fixed initial string payload">
         </div>
       </div>
 
