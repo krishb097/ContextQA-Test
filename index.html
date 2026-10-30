@@ -39,7 +39,7 @@
       position: relative;
     }
 
-    /* Animated Ambient Glows */
+    /* Ambient Glows */
     .glow-orb-1, .glow-orb-2 {
       position: absolute;
       border-radius: 50%;
@@ -112,7 +112,6 @@
       font-weight: 600;
     }
 
-    /* Container & Layout */
     .wrapper {
       max-width: 1240px;
       margin: 0 auto;
@@ -124,7 +123,6 @@
     .hero-section {
       text-align: center;
       margin-bottom: 48px;
-      animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-badge {
       display: inline-flex;
@@ -159,10 +157,16 @@
       color: var(--text-muted);
       font-size: 1.05rem;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 24px;
     }
 
-    /* Cards Grid */
+    .links-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -176,14 +180,7 @@
       border-radius: 16px;
       padding: 24px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      overflow: hidden;
-    }
-    .glass-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(99, 102, 241, 0.4);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.1);
     }
 
     .card-header {
@@ -198,9 +195,6 @@
       font-size: 1.1rem;
       font-weight: 700;
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .badge-ids {
       font-family: 'JetBrains Mono', monospace;
@@ -226,7 +220,6 @@
       color: var(--text-muted);
     }
 
-    /* Inputs, Buttons, & Interactive Elements */
     .code-pill {
       font-family: 'JetBrains Mono', monospace;
       background: rgba(0, 0, 0, 0.4);
@@ -235,6 +228,9 @@
       border-radius: 8px;
       color: #38bdf8;
       font-size: 0.9rem;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
     }
 
     .input-field {
@@ -245,8 +241,8 @@
       padding: 12px 14px;
       color: #ffffff;
       font-size: 0.95rem;
-      transition: all 0.2s ease;
       outline: none;
+      transition: all 0.2s ease;
     }
     .input-field:focus {
       border-color: var(--primary);
@@ -265,40 +261,31 @@
       cursor: pointer;
       border: none;
       transition: all 0.25s ease;
+      text-decoration: none;
     }
     .btn-gradient {
       background: linear-gradient(135deg, var(--primary), #4f46e5);
       color: white;
       box-shadow: 0 4px 15px var(--primary-glow);
     }
-    .btn-gradient:hover {
-      background: linear-gradient(135deg, #4f46e5, #4338ca);
-      transform: translateY(-1px);
-    }
     .btn-secondary {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
     }
     .btn:disabled {
       background: rgba(255, 255, 255, 0.03);
       color: #475569;
       border: 1px solid rgba(255, 255, 255, 0.05);
       cursor: not-allowed;
-      box-shadow: none;
     }
 
-    /* Dynamic Target Box for Class Verifications */
     .state-box {
       border: 1px dashed rgba(255, 255, 255, 0.15);
       background: rgba(0, 0, 0, 0.25);
       border-radius: 10px;
       padding: 16px;
       text-align: center;
-      transition: all 0.3s ease;
     }
     .state-box.active {
       border-color: var(--success);
@@ -310,59 +297,25 @@
       border-style: solid;
     }
 
-    /* Custom Styled Glass Dropdown */
-.select-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.custom-select {
-  width: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: rgba(0, 0, 0, 0.4);
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9px;
-  padding: 12px 40px 12px 14px;
-  color: #f8fafc;
-  font-size: 0.92rem;
-  font-weight: 500;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(10px);
-}
-
-.custom-select:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  background-color: rgba(0, 0, 0, 0.55);
-}
-
-.custom-select:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
-}
-
-/* Dropdown Options Popup styling */
-.custom-select option {
-  background-color: #0f172a;
-  color: #f8fafc;
-  padding: 10px;
-  font-size: 0.9rem;
-}
-
-.custom-select option:disabled {
-  color: #64748b;
-}
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .custom-select {
+      width: 100%;
+      appearance: none;
+      background-color: rgba(0, 0, 0, 0.4);
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9px;
+      padding: 12px 40px 12px 14px;
+      color: #f8fafc;
+      font-size: 0.92rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .custom-select option {
+      background-color: #0f172a;
+      color: #f8fafc;
     }
   </style>
 </head>
@@ -371,7 +324,6 @@
   <div class="glow-orb-1"></div>
   <div class="glow-orb-2"></div>
 
-  <!-- Navigation -->
   <nav>
     <div class="nav-brand">
       <div class="brand-logo">
@@ -384,7 +336,6 @@
     <span class="nav-tag">Live Testing Target • Part D</span>
   </nav>
 
-  <!-- Content Wrapper -->
   <div class="wrapper">
 
     <div class="hero-section">
@@ -394,67 +345,62 @@
       </div>
       <h1 class="hero-title">NLP Template Verification Hub</h1>
       <p class="hero-desc">Sleek multi-scenario targets designed for exact validation of ticket CON-6075 fixes.</p>
+      
       <!-- ID 464 Testing Links -->
-      <div class="test-row">
-  <span class="test-label">New Tab Link (Pass Target)</span>
-  <a id="link-new-tab" href="https://www.google.com/" target="_blank" class="btn btn-secondary">
-    Open in New Tab
-  </a>
-</div>
-
-<div class="test-row">
-  <span class="test-label">Same Tab Link (Fail Target)</span>
-  <a id="link-same-tab" href="https://www.google.com/" class="btn btn-secondary">Open in Same Tab</a>
-</div>
+      <div class="links-group">
+        <a id="link-new-tab" data-qa="new-tab-link" href="https://krishb097.github.io/ContextQA-Test/" target="_blank" class="btn btn-secondary">
+          Open in New Tab
+        </a>
+        <a id="link-same-tab" data-qa="same-tab-link" href="https://krishb097.github.io/ContextQA-Test/" class="btn btn-secondary">
+          Open in Same Tab
+        </a>
+      </div>
     </div>
 
-    <!-- Cards Matrix -->
     <div class="dashboard-grid">
 
-      <!-- CARD 1: Text Verifications -->
+      <!-- CARD 1: Text Verifications (ID 467, 168, 138, 179) -->
       <div class="glass-card">
         <div class="card-header">
           <h2 class="card-title">Page Text Evaluation</h2>
-          <span class="badge-ids">ID 467, 168</span>
+          <span class="badge-ids">ID 467, 168, 138, 179</span>
         </div>
         <div class="test-row">
           <span class="test-label">Duplicate Text Occurrence #1</span>
-          <div class="code-pill">Status: Operational</div>
+          <div id="dup-text-1" data-qa="duplicate-text-1" class="code-pill">Status: Operational</div>
         </div>
         <div class="test-row">
           <span class="test-label">Duplicate Text Occurrence #2</span>
-          <div class="code-pill">Status: Operational</div>
+          <div id="dup-text-2" data-qa="duplicate-text-2" class="code-pill">Status: Operational</div>
         </div>
         <div class="test-row">
           <span class="test-label">Quote Parsing Target</span>
-          <div class="code-pill">Platform: "ContextQA" Next-Gen Engine</div>
+          <div id="quote-target" data-qa="quote-text" class="code-pill">Platform: "ContextQA" Next-Gen Engine</div>
         </div>
       </div>
 
-      <!-- Dropdown Verification Card (ID 519) -->
-<div class="glass-card">
-  <div class="card-header">
-    <h2 class="card-title">Dropdown Evaluation</h2>
-    <span class="badge-ids">ID 519</span>
-  </div>
-  <div class="test-row">
-    <span class="test-label">Target Dropdown List</span>
-    <div class="select-wrapper">
-      <select id="test-dropdown" class="custom-select">
-        <option value="" disabled selected>Select browser environment...</option>
-        <option value="Google Chrome">Google Chrome</option>
-        <option value="Mozilla Firefox">Mozilla Firefox</option>
-        <option value="Apple Safari">Apple Safari</option>
-        <option value="Microsoft Edge">Microsoft Edge</option>
-      </select>
-    </div>
-  </div>
-  <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-top: 4px;">
-    Contains: <code>Google Chrome</code>, <code>Mozilla Firefox</code>, <code>Apple Safari</code>, <code>Microsoft Edge</code>
-  </p>
-</div>
+      <!-- CARD 2: Dropdown Evaluation (ID 519) -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title">Dropdown Evaluation</h2>
+          <span class="badge-ids">ID 519</span>
+        </div>
+        <div class="test-row">
+          <span class="test-label">Target Dropdown List</span>
+          <select id="test-dropdown" data-qa="browser-dropdown" class="custom-select">
+            <option value="" disabled selected>Select browser environment...</option>
+            <option value="Google Chrome">Google Chrome</option>
+            <option value="Mozilla Firefox">Mozilla Firefox</option>
+            <option value="Apple Safari">Apple Safari</option>
+            <option value="Microsoft Edge">Microsoft Edge</option>
+          </select>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-top: 4px;">
+          Contains: <code>Google Chrome</code>, <code>Mozilla Firefox</code>, <code>Apple Safari</code>, <code>Microsoft Edge</code>
+        </p>
+      </div>
 
-      <!-- CARD 2: Attributes & Classes -->
+      <!-- CARD 3: Attributes & Classes (ID 478, 66, 465) -->
       <div class="glass-card">
         <div class="card-header">
           <h2 class="card-title">Attributes & Classes</h2>
@@ -463,6 +409,7 @@
         <div class="test-row">
           <span class="test-label">Attribute Target Label</span>
           <label id="target-attr-label" 
+                 data-qa="attr-target-label"
                  data-type="primary-production-instance" 
                  title="qa-verified-component"
                  class="code-pill" style="display: block; cursor: default;">
@@ -471,13 +418,13 @@
         </div>
         <div class="test-row">
           <span class="test-label">Multi-Class Container</span>
-          <div id="class-container-target" class="state-box active selected-row">
+          <div id="class-container-target" data-qa="multi-class-box" class="state-box active selected-row">
             Target Container with classes: <strong>active</strong> & <strong>selected-row</strong>
           </div>
         </div>
       </div>
 
-      <!-- CARD 3: If Condition Targets -->
+      <!-- CARD 4: Conditional States (ID 101, 469) -->
       <div class="glass-card">
         <div class="card-header">
           <h2 class="card-title">Conditional States</h2>
@@ -485,46 +432,32 @@
         </div>
         
         <div class="test-row">
-          <span class="test-label">Clickable Button (ID 101 Pass Target)</span>
-          <button 
-            id="btn-clickable" 
-            name="btn-clickable"
-            type="button" 
-            class="btn btn-gradient" 
-            data-qa="active-action-btn"
-            aria-label="Active Action"
-            style="width: 100%; cursor: pointer;">
+          <span class="test-label">Clickable Button (ID 101 Pass)</span>
+          <button id="btn-clickable" data-qa="active-action-btn" type="button" class="btn btn-gradient" style="width: 100%;">
             Active Action
           </button>
         </div>
 
         <div class="test-row">
-          <span class="test-label">Disabled Button (ID 101 Fail / Else Target)</span>
-          <button 
-            id="btn-disabled-test" 
-            name="btn-disabled-test"
-            type="button" 
-            class="btn" 
-            disabled 
-            data-qa="disabled-action-btn"
-            aria-label="Disabled Action"
-            style="width: 100%; cursor: not-allowed; pointer-events: none;">
+          <span class="test-label">Disabled Button (ID 101 Else)</span>
+          <button id="btn-disabled-test" data-qa="disabled-action-btn" type="button" class="btn" disabled style="width: 100%;">
             Disabled Action
           </button>
         </div>
 
+        <!-- ID 469 Target Elements -->
         <div class="test-row">
-  <span class="test-label">Empty Element (ID 469 Pass)</span>
-  <div id="target-empty-container" class="code-pill" style="min-height: 42px;"></div>
-</div>
+          <span class="test-label">Empty Input (ID 469 Pass)</span>
+          <input type="text" id="target-empty-input" name="target-empty-input" data-qa="target-empty-input" class="input-field" value="">
+        </div>
 
-<div class="test-row">
-  <span class="test-label">Filled Element (ID 469 Else)</span>
-  <div id="target-filled-container" class="code-pill">Fixed container payload text</div>
-</div>
+        <div class="test-row">
+          <span class="test-label">Filled Input (ID 469 Else)</span>
+          <input type="text" id="target-filled-input" name="target-filled-input" data-qa="target-filled-input" class="input-field" value="Automation payload data">
+        </div>
       </div>
 
-      <!-- CARD 4: While Loops with Inputbox -->
+      <!-- CARD 5: While Loops with Inputbox (ID 570, 569) -->
       <div class="glass-card">
         <div class="card-header">
           <h2 class="card-title">While Loop Inputbox</h2>
@@ -532,16 +465,16 @@
         </div>
         <div class="test-row">
           <span class="test-label">Live Monitored Field</span>
-          <input type="text" id="dynamic-loop-input" class="input-field" value="QUEUE_PROCESSING_ACTIVE">
+          <input type="text" id="dynamic-loop-input" data-qa="loop-input" class="input-field" value="QUEUE_PROCESSING_ACTIVE">
         </div>
         <div class="test-row" style="margin-top: 6px;">
-          <button class="btn btn-secondary" style="width: 100%;" onclick="toggleLoopValue()">
+          <button id="btn-toggle-loop" data-qa="loop-toggle-btn" type="button" class="btn btn-secondary" style="width: 100%;" onclick="toggleLoopValue()">
             Toggle State to 'IDLE_COMPLETE'
           </button>
         </div>
       </div>
 
-      <!-- CARD 5: Playwright Export Check -->
+      <!-- CARD 6: Playwright Export Target (ID 590) -->
       <div class="glass-card">
         <div class="card-header">
           <h2 class="card-title">Playwright Export Target</h2>
@@ -549,7 +482,7 @@
         </div>
         <div class="test-row">
           <span class="test-label">Enabled Verification Element</span>
-          <button id="target-export-btn" class="btn btn-gradient" style="width: 100%;">
+          <button id="target-export-btn" data-qa="export-target-btn" type="button" class="btn btn-gradient" style="width: 100%;">
             Exportable Verification Target
           </button>
         </div>
