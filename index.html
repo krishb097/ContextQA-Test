@@ -310,6 +310,56 @@
       border-style: solid;
     }
 
+    /* Custom Styled Glass Dropdown */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  padding: 12px 40px 12px 14px;
+  color: #f8fafc;
+  font-size: 0.92rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.custom-select:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.custom-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* Dropdown Options Popup styling */
+.custom-select option {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.custom-select option:disabled {
+  color: #64748b;
+}
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -369,11 +419,28 @@
         </div>
       </div>
 
-      <select id="test-dropdown">
-        <option value="chrome">Google Chrome</option>
-        <option value="firefox">Mozilla Firefox</option>
-        <option value="safari">Apple Safari</option>
+      <!-- Dropdown Verification Card (ID 519) -->
+<div class="glass-card">
+  <div class="card-header">
+    <h2 class="card-title">Dropdown Evaluation</h2>
+    <span class="badge-ids">ID 519</span>
+  </div>
+  <div class="test-row">
+    <span class="test-label">Target Dropdown List</span>
+    <div class="select-wrapper">
+      <select id="test-dropdown" class="custom-select">
+        <option value="" disabled selected>Select browser environment...</option>
+        <option value="Google Chrome">Google Chrome</option>
+        <option value="Mozilla Firefox">Mozilla Firefox</option>
+        <option value="Apple Safari">Apple Safari</option>
+        <option value="Microsoft Edge">Microsoft Edge</option>
       </select>
+    </div>
+  </div>
+  <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-top: 4px;">
+    Contains: <code>Google Chrome</code>, <code>Mozilla Firefox</code>, <code>Apple Safari</code>, <code>Microsoft Edge</code>
+  </p>
+</div>
 
       <!-- CARD 2: Attributes & Classes -->
       <div class="glass-card">
